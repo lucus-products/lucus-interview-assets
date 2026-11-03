@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="300" viewBox="0 0 800 300" font-family="PingFang SC, Microsoft YaHei, sans-serif">
+  <defs>
+    <marker id="arrGreen" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#42b883"/>
+    </marker>
+    <marker id="arrOrange" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#e8590c"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="800" height="300" rx="12" fill="#ffffff"/>
+  <rect x="0" y="0" width="800" height="300" rx="12" fill="none" stroke="#dee2e6"/>
+
+  <!-- 阶段标签 -->
+  <text x="20" y="26" font-size="14" font-weight="bold" fill="#42b883">① 渲染/依赖收集（读）</text>
+  <text x="20" y="176" font-size="14" font-weight="bold" fill="#e8590c">② 数据变更/触发更新（写）</text>
+
+  <!-- ============ 行 1：收集路径 ============ -->
+  <g stroke="#42b883" stroke-width="1.5">
+    <rect x="20"  y="40" width="210" height="54" rx="10" fill="#f2faf6"/>
+    <rect x="250" y="40" width="210" height="54" rx="10" fill="#f2faf6"/>
+    <rect x="480" y="40" width="210" height="54" rx="10" fill="#f2faf6"/>
+  </g>
+  <g fill="#1f3d2f" font-size="15" text-anchor="middle">
+    <text x="125" y="64">reactive(obj)</text><text x="125" y="84">创建 Proxy 代理</text>
+    <text x="355" y="64">读取属性 · getter</text><text x="355" y="84">track() 收集当前 effect</text>
+    <text x="585" y="64">effect / 组件渲染</text><text x="585" y="84">依赖执行 → 更新视图</text>
+  </g>
+  <line x1="230" y1="67" x2="246" y2="67" stroke="#42b883" marker-end="url(#arrGreen)"/>
+  <line x1="460" y1="67" x2="476" y2="67" stroke="#42b883" marker-end="url(#arrGreen)"/>
+
+  <!-- ============ 行 2：触发路径 ============ -->
+  <g stroke="#e8590c" stroke-width="1.5">
+    <rect x="20"  y="192" width="210" height="54" rx="10" fill="#fff4ee"/>
+    <rect x="250" y="192" width="210" height="54" rx="10" fill="#fff4ee"/>
+    <rect x="480" y="192" width="210" height="54" rx="10" fill="#fff4ee"/>
+  </g>
+  <g fill="#5a2c13" font-size="15" text-anchor="middle">
+    <text x="125" y="216">修改属性 · setter</text><text x="125" y="236">trigger() 触发更新</text>
+    <text x="355" y="216">命中 targetMap 依赖表</text><text x="355" y="236">取出该属性的 effect 集合</text>
+    <text x="585" y="216">effect 重新执行</text><text x="585" y="236">驱动视图 / 副作用更新</text>
+  </g>
+  <line x1="230" y1="219" x2="246" y2="219" stroke="#e8590c" marker-end="url(#arrOrange)"/>
+  <line x1="460" y1="219" x2="476" y2="219" stroke="#e8590c" marker-end="url(#arrOrange)"/>
+
+  <!-- 收集路径与触发路径汇聚于同一 effect -->
+  <line x1="585" y1="94" x2="585" y2="188" stroke="#adb5bd" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <text x="596" y="146" font-size="12" fill="#868e96">同一个 effect</text>
+</svg>
