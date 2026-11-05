@@ -1,0 +1,89 @@
+/* 颜色全部走站点注入的主题变量（带亮色 fallback）：沙箱里能跟随亮/暗主题 */
+body {
+  margin: 0;
+  background: var(--bg, #f5f6f8);
+  color: var(--text, #1c1f26);
+  font-family: system-ui, -apple-system, 'PingFang SC', sans-serif;
+  line-height: 1.7;
+}
+
+.reader {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 200px;
+  gap: 24px;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+}
+
+.article h1 {
+  margin: 0 0 8px;
+  font-size: 22px;
+}
+
+.tip {
+  margin: 0;
+  color: var(--muted, #69707c);
+  font-size: 13px;
+}
+
+/* 每节都撑高一些：预览区很矮，不这样滚不动，目录高亮也就演示不出来 */
+.part {
+  min-height: 62vh;
+  padding-top: 24px;
+  border-top: 1px dashed var(--border, #e4e7ec);
+}
+
+.part h2 {
+  margin: 0 0 10px;
+  font-size: 17px;
+}
+
+.part p {
+  margin: 0 0 12px;
+}
+
+.toc {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+  padding: 12px 14px;
+  border: 1px solid var(--border, #e4e7ec);
+  border-radius: 10px;
+  background: var(--panel, #ffffff);
+}
+
+.toc-title {
+  margin: 0 0 8px;
+  color: var(--muted, #69707c);
+  font-size: 12px;
+}
+
+.toc a {
+  display: block;
+  padding: 4px 8px;
+  border-radius: 6px;
+  color: var(--muted, #69707c);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.toc a:hover {
+  color: var(--accent, #42b883);
+}
+
+.toc a.is-on {
+  background: color-mix(in srgb, var(--accent, #42b883) 12%, transparent);
+  color: var(--accent, #42b883);
+}
+
+@media (max-width: 560px) {
+  .reader {
+    grid-template-columns: 1fr;
+  }
+
+  .toc {
+    position: static;
+    order: -1;
+  }
+}
