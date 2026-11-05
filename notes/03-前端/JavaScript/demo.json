@@ -1,0 +1,11 @@
+{
+  "name": "m4-note-sample",
+  "version": "1.0.0",
+  "private": true,
+  "scenes": ["markdown", "pdf", "office", "code", "text", "legacy", "image"],
+  "verify": {
+    "relative_assets": true,
+    "entry_detection": "index.html",
+    "image_no_note": true
+  }
+}
