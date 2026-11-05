@@ -1,0 +1,5 @@
+[2026-11-05 18:00:01] INFO  build started
+[2026-11-05 18:00:02] INFO  resolving dependencies
+[2026-11-05 18:00:09] INFO  compiled 42 modules
+[2026-11-05 18:00:10] WARN  3 pre-existing eslint warnings (vue/require-default-prop)
+[2026-11-05 18:00:11] INFO  build finished in 10.4s
