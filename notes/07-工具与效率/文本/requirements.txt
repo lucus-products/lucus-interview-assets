@@ -1,0 +1,11 @@
+# 纯 NumPy 手写数字识别 —— 依赖清单
+# 安装: pip install -r requirements.txt
+
+# 核心:矩阵运算(整个神经网络的实现基础)
+numpy>=1.24
+
+# 数据处理:用 Pandas 读取 MNIST 的 CSV 格式数据集
+pandas>=2.0
+
+# 可视化(可选):训练损失曲线、数字样本预览
+matplotlib>=3.7
