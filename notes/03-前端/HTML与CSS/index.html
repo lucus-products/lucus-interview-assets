@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>迷你阅读器：滚动高亮目录</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="reader">
+      <article class="article">
+        <h1>迷你阅读器</h1>
+        <p class="tip">
+          滚动正文：右边目录会跟着高亮当前小节。打开底部控制台，每换一节都会打印一条日志。
+        </p>
+
+        <section class="part" id="part-1">
+          <h2>一、为什么要目录</h2>
+          <p>长文里读者需要知道自己读到哪，也需要能一键跳回某一节。</p>
+          <p>这一页把「正文 + 目录」压缩成一个最小例子：左边滚，右边亮。</p>
+        </section>
+
+        <section class="part" id="part-2">
+          <h2>二、怎么判断当前小节</h2>
+          <p>
+            正文滚动时逐个看标题的位置：谁在「视口 25% 线」上方、且离它最近，谁就是当前小节。
+          </p>
+          <p>
+            按位置判断比「IntersectionObserver + 窄带」更稳：沙箱 iframe 没有同源，
+            <code>rootMargin</code> 会被浏览器忽略，窄带退化成整个视口，高亮就会跳到下一节。
+          </p>
+        </section>
+
+        <section class="part" id="part-3">
+          <h2>三、完整写法</h2>
+          <p>
+            滚动事件很密，用 <code>requestAnimationFrame</code> 合并：一帧最多算一次位置，
+            避免每个 scroll 回调都强制浏览器重新布局。
+          </p>
+          <p>点击目录项跳转后，滚动事件会触发一次更新，高亮自动对齐到目标小节。</p>
+        </section>
+
+        <section class="part" id="part-4">
+          <h2>四、还能怎么扩展</h2>
+          <p>平滑滚动、阅读进度条、记住上次读到哪……都能在这一份骨架上继续搭。</p>
+          <p>站点右侧的文章目录就是这个思路的完整版，还多了层级缩进和滚动跟随。</p>
+        </section>
+      </article>
+
+      <aside class="toc">
+        <p class="toc-title">本页目录</p>
+        <a href="#part-1">一、为什么要目录</a>
+        <a href="#part-2">二、怎么判断当前小节</a>
+        <a href="#part-3">三、完整写法</a>
+        <a href="#part-4">四、还能怎么扩展</a>
+      </aside>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
